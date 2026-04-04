@@ -146,7 +146,9 @@
   .header-right { gap: 7px; }
 }
 
+
+
 @media (max-width: 380px) {
-  /* On very small screens hide role label and shrink select */
-  .role-selector { display: none; }
+  .role-label { display: none; }
+  .role-select { font-size: 0.75rem; padding: 4px 6px; max-width: 90px; }
 }
