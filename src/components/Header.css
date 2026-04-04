@@ -5,32 +5,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 20px;
   flex-shrink: 0;
   position: sticky;
   top: 0;
   z-index: 40;
+  gap: 12px;
 }
 
+/* ─── Left ────────────────────────────────────────────────── */
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  min-width: 0;
 }
 
 .menu-btn {
   background: none;
   border: none;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   gap: 5px;
-  padding: 4px;
-  border-radius: 6px;
+  padding: 6px;
+  border-radius: 8px;
   transition: background 0.15s;
+  flex-shrink: 0;
 }
 .menu-btn:hover { background: var(--border); }
 .menu-btn span {
@@ -38,11 +43,15 @@
   height: 2px;
   background: var(--text-secondary);
   border-radius: 1px;
-  transition: all 0.2s;
+  transition: all 0.25s ease;
 }
 .menu-btn span:nth-child(1) { width: 20px; }
 .menu-btn span:nth-child(2) { width: 14px; }
 .menu-btn span:nth-child(3) { width: 17px; }
+
+.menu-btn:hover span:nth-child(1) { width: 20px; }
+.menu-btn:hover span:nth-child(2) { width: 20px; }
+.menu-btn:hover span:nth-child(3) { width: 20px; }
 
 .page-title {
   font-family: var(--font-display);
@@ -50,18 +59,23 @@
   font-size: 1.15rem;
   color: var(--text);
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* ─── Right ───────────────────────────────────────────────── */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .role-selector {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .role-label {
@@ -80,6 +94,7 @@
   cursor: pointer;
   outline: none;
   transition: border-color 0.15s;
+  max-width: 130px;
 }
 .role-select:focus { border-color: var(--accent); }
 
@@ -96,6 +111,7 @@
   font-size: 1rem;
   transition: all 0.15s;
   color: var(--text-secondary);
+  flex-shrink: 0;
 }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -111,36 +127,26 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.85rem;
-}
-
-@media (max-width: 600px) {
-  .role-label { display: none; }
-  .page-title { font-size: 1rem; }
-}
-
-.app-header {
-  animation: fadeIn 0.4s ease;
-}
-
-/* Smooth icon animation */
-.menu-btn span {
-  transition: all 0.3s ease;
-}
-
-.menu-btn:hover span:nth-child(1) {
-  width: 24px;
-}
-.menu-btn:hover span:nth-child(2) {
-  width: 18px;
-}
-.menu-btn:hover span:nth-child(3) {
-  width: 20px;
-}
-
-/* Avatar pulse */
-.user-avatar {
+  flex-shrink: 0;
   transition: transform 0.2s ease;
 }
-.user-avatar:hover {
-  transform: scale(1.08);
+.user-avatar:hover { transform: scale(1.08); }
+
+/* ─── Tablet ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .role-label { display: none; }
+}
+
+/* ─── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .app-header { padding: 0 14px; gap: 8px; }
+  .page-title  { font-size: 1rem; }
+  .role-select { font-size: 0.8rem; padding: 5px 8px; max-width: 110px; }
+  .theme-toggle, .user-avatar { width: 32px; height: 32px; font-size: 0.9rem; }
+  .header-right { gap: 7px; }
+}
+
+@media (max-width: 380px) {
+  /* On very small screens hide role label and shrink select */
+  .role-selector { display: none; }
 }

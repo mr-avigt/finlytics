@@ -19,19 +19,25 @@
   width: 100%;
   max-width: 440px;
   animation: fadeUp 0.25s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px 16px;
+  padding: 18px 20px 14px;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 1;
 }
 .modal-header h2 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text);
 }
 
@@ -52,7 +58,7 @@
 .modal-close:hover { border-color: var(--accent-expense); color: var(--accent-expense); }
 
 .modal-body {
-  padding: 20px 24px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -62,7 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-secondary);
   text-transform: uppercase;
@@ -84,7 +90,7 @@
 }
 .modal-body input:focus,
 .modal-body select:focus { border-color: var(--accent); }
-.modal-body input.error { border-color: var(--accent-expense); }
+.modal-body input.error  { border-color: var(--accent-expense); }
 
 .form-row {
   display: grid;
@@ -94,7 +100,7 @@
 
 .err-msg {
   color: var(--accent-expense);
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   text-transform: none;
   letter-spacing: 0;
   font-weight: 400;
@@ -104,21 +110,35 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 16px 24px 20px;
+  padding: 14px 20px 18px;
   border-top: 1px solid var(--border);
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-card);
 }
 
-.modal-card {
-  animation: modalPop 0.25s ease;
+/* ─── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-card {
+    max-width: 100%;
+    border-radius: var(--radius) var(--radius) 0 0;
+    max-height: 92vh;
+    animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .modal-footer { gap: 8px; }
+  .modal-footer .btn-primary,
+  .modal-footer .btn-outline { flex: 1; text-align: center; }
 }
 
-@keyframes modalPop {
-  from {
-    transform: scale(0.95) translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0.8; }
+  to   { transform: translateY(0);    opacity: 1; }
 }

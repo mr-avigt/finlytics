@@ -1,33 +1,55 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding-left: 10px;
-  padding-right: 10px;
-  animation: fadeUp 0.3s ease;
+  gap: 20px;
 }
 
+/* ─── Summary Cards ───────────────────────────────────────── */
 .summary-cards {
-  /* padding-left: 10px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
+.summary-cards > * {
+  animation: fadeUp 0.4s ease backwards;
+  min-width: 0;
+}
+.summary-cards > *:nth-child(1) { animation-delay: 0.05s; }
+.summary-cards > *:nth-child(2) { animation-delay: 0.10s; }
+.summary-cards > *:nth-child(3) { animation-delay: 0.15s; }
+.summary-cards > *:nth-child(4) { animation-delay: 0.20s; }
+
+/* ─── Charts Row ──────────────────────────────────────────── */
 .charts-row {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 16px;
+  gap: 14px;
+  min-width: 0;
 }
 
-.chart-card.wide { grid-column: auto; }
+.chart-card {
+  animation: fadeUp 0.5s ease backwards;
+  min-width: 0;
+}
+.chart-card:nth-child(1) { animation-delay: 0.2s; }
+.chart-card:nth-child(2) { animation-delay: 0.3s; }
 
+.chart-card:hover,
+.recent-section:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease;
+}
+
+/* ─── Recent Section ──────────────────────────────────────── */
 .recent-section {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
   padding: 20px;
   box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.5s ease backwards;
+  animation-delay: 0.35s;
 }
 
 .section-header {
@@ -35,6 +57,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  gap: 8px;
 }
 .section-header h3 {
   font-family: var(--font-display);
@@ -42,49 +65,32 @@
   font-size: 1rem;
 }
 
+/* ─── Tablet (768px – 1100px) ─────────────────────────────── */
 @media (max-width: 1100px) {
   .summary-cards { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 900px) {
   .charts-row { grid-template-columns: 1fr; }
 }
-@media (max-width: 600px) {
-  .summary-cards { grid-template-columns: 1fr 1fr; }
+
+/* ─── Mobile (≤ 767px) ────────────────────────────────────── */
+@media (max-width: 767px) {
+  .dashboard { gap: 14px; }
+
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .charts-row { gap: 10px; }
+
+  .recent-section { padding: 14px; }
+
+  .chart-card:hover, .recent-section:hover { transform: none; }
 }
 
-
-.summary-cards > * {
-  animation: fadeUp 0.4s ease backwards;
-}
-
-.summary-cards > *:nth-child(1) { animation-delay: 0.05s; }
-.summary-cards > *:nth-child(2) { animation-delay: 0.1s; }
-.summary-cards > *:nth-child(3) { animation-delay: 0.15s; }
-.summary-cards > *:nth-child(4) { animation-delay: 0.2s; }
-
-/* Charts animation */
-.chart-card {
-  animation: fadeUp 0.5s ease backwards;
-}
-
-.chart-card:nth-child(1) { animation-delay: 0.2s; }
-.chart-card:nth-child(2) { animation-delay: 0.3s; }
-
-/* Recent section */
-.recent-section {
-  animation: fadeUp 0.5s ease backwards;
-  animation-delay: 0.35s;
-}
-
-.chart-card,
-.recent-section {
-  backdrop-filter: blur(10px);
-  /* background: rgba(30, 41, 59, 0.7); */
-}
-
-/* Add depth */
-.chart-card:hover,
-.recent-section:hover {
-  transform: translateY(-3px) scale(1.01);
-  transition: all 0.25s ease;
+/* ─── Very small (≤ 400px) ────────────────────────────────── */
+@media (max-width: 400px) {
+  .summary-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
 }

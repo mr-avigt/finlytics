@@ -31,7 +31,7 @@ const store = configureStore({
 });
 
 // Apply saved dark mode on initial load
-const savedDark = localStorage.getItem("finance_dark") === "true";
+const savedDark = localStorage.getItem("finance_dark") === "false";
 document.documentElement.setAttribute("data-theme", savedDark ? "dark" : "light");
 
 export default store;

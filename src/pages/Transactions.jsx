@@ -111,40 +111,71 @@ export default function Transactions() {
           </button>
         </div>
       ) : (
-        <div className="tx-table-wrap">
-          <table className="tx-table">
-            <thead>
-              <tr>
-                <th onClick={() => toggleSort("date")} className="sortable">Date{sortIcon("date")}</th>
-                <th>Description</th>
-                <th onClick={() => toggleSort("category")} className="sortable">Category{sortIcon("category")}</th>
-                <th>Type</th>
-                <th onClick={() => toggleSort("amount")} className="sortable">Amount{sortIcon("amount")}</th>
-                {role === "admin" && <th>Actions</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map(tx => (
-                <tr key={tx.id} className="tx-row">
-                  <td className="tx-date">{fmtDate(tx.date)}</td>
-                  <td className="tx-desc">
-                    <span className="tx-cat-icon">{CATEGORY_ICONS[tx.category] || "💳"}</span>
-                    {tx.description}
-                  </td>
-                  <td><span className="category-tag">{tx.category}</span></td>
-                  <td><span className={`type-badge ${tx.type}`}>{tx.type}</span></td>
-                  <td className={`tx-amt ${tx.type}`}>{tx.type === "income" ? "+" : "-"}{fmt(tx.amount)}</td>
-                  {role === "admin" && (
-                    <td className="action-cell">
-                      <button className="icon-btn edit" onClick={() => setModal({ mode: "edit", tx })}>✎</button>
-                      <button className="icon-btn delete" onClick={() => { if (confirm("Delete this transaction?")) dispatch(deleteTransaction(tx.id)); }}>✕</button>
-                    </td>
-                  )}
+        <>
+          {/* ── Desktop Table ── */}
+          <div className="tx-table-wrap">
+            <table className="tx-table">
+              <thead>
+                <tr>
+                  <th onClick={() => toggleSort("date")} className="sortable">Date{sortIcon("date")}</th>
+                  <th>Description</th>
+                  <th onClick={() => toggleSort("category")} className="sortable">Category{sortIcon("category")}</th>
+                  <th>Type</th>
+                  <th onClick={() => toggleSort("amount")} className="sortable">Amount{sortIcon("amount")}</th>
+                  {role === "admin" && <th>Actions</th>}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {filtered.map(tx => (
+                  <tr key={tx.id} className="tx-row">
+                    <td className="tx-date">{fmtDate(tx.date)}</td>
+                    <td className="tx-desc">
+                      <span className="tx-cat-icon">{CATEGORY_ICONS[tx.category] || "💳"}</span>
+                      {tx.description}
+                    </td>
+                    <td><span className="category-tag">{tx.category}</span></td>
+                    <td><span className={`type-badge ${tx.type}`}>{tx.type}</span></td>
+                    <td className={`tx-amt ${tx.type}`}>{tx.type === "income" ? "+" : "-"}{fmt(tx.amount)}</td>
+                    {role === "admin" && (
+                      <td className="action-cell">
+                        <button className="icon-btn edit" onClick={() => setModal({ mode: "edit", tx })}>✎</button>
+                        <button className="icon-btn delete" onClick={() => { if (confirm("Delete this transaction?")) dispatch(deleteTransaction(tx.id)); }}>✕</button>
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile Card List ── */}
+          <div className="tx-card-list">
+            {filtered.map((tx, i) => (
+              <div key={tx.id} className="tx-card" style={{ animationDelay: `${i * 0.03}s` }}>
+                <div className="tx-card-icon">{CATEGORY_ICONS[tx.category] || "💳"}</div>
+                <div className="tx-card-body">
+                  <span className="tx-card-desc">{tx.description}</span>
+                  <div className="tx-card-meta">
+                    <span className={`type-badge ${tx.type}`}>{tx.type}</span>
+                    <span>{tx.category}</span>
+                    <span>{fmtDate(tx.date)}</span>
+                  </div>
+                </div>
+                <div className="tx-card-right">
+                  <span className={`tx-card-amount ${tx.type}`}>
+                    {tx.type === "income" ? "+" : "-"}{fmt(tx.amount)}
+                  </span>
+                  {role === "admin" && (
+                    <div className="tx-card-actions">
+                      <button className="icon-btn edit" onClick={() => setModal({ mode: "edit", tx })}>✎</button>
+                      <button className="icon-btn delete" onClick={() => { if (confirm("Delete?")) dispatch(deleteTransaction(tx.id)); }}>✕</button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {modal && <TransactionModal mode={modal.mode} tx={modal.tx} onClose={() => setModal(null)} />}

@@ -4,7 +4,7 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     role: localStorage.getItem("finance_role") || "viewer",
-    darkMode: localStorage.getItem("finance_dark") === "true",
+    darkMode: localStorage.getItem("finance_dark") === "false",
   },
   reducers: {
     setRole: (state, action) => {
