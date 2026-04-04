@@ -1,0 +1,73 @@
+.spending-breakdown {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.donut-wrap { flex-shrink: 0; }
+
+.donut-arc {
+  cursor: pointer;
+  transition: opacity 0.15s;
+  animation: fadeIn 0.5s ease backwards;
+  animation-delay: var(--delay, 0s);
+}
+.donut-arc:hover { opacity: 0.8; }
+
+.donut-center-label {
+  fill: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+.donut-center-value {
+  fill: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.breakdown-list {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.breakdown-item {
+  display: grid;
+  grid-template-columns: 10px 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.breakdown-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.breakdown-cat {
+  color: var(--text);
+  truncate: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.breakdown-pct {
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+}
+
+.breakdown-amt {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+@media (max-width: 500px) {
+  .spending-breakdown { flex-direction: column; }
+}

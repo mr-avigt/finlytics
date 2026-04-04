@@ -1,0 +1,198 @@
+.transactions-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeUp 0.3s ease;
+}
+
+.tx-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tx-filters {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  flex: 1;
+  min-width: 180px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.filter-input:focus { border-color: var(--accent); }
+.filter-input::placeholder { color: var(--text-secondary); }
+
+.filter-select {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.filter-select:focus { border-color: var(--accent); }
+
+.tx-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tx-stats-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+.tx-stats-bar .income-sum { color: var(--accent-income); font-weight: 500; }
+.tx-stats-bar .expense-sum { color: var(--accent-expense); font-weight: 500; }
+
+.tx-table-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.tx-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.tx-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--bg);
+  white-space: nowrap;
+}
+.tx-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.tx-table th.sortable:hover { color: var(--accent); }
+
+.tx-row {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.15s;
+  animation: fadeUp 0.2s ease backwards;
+}
+.tx-row:last-child { border-bottom: none; }
+.tx-row:hover { background: var(--bg); }
+
+.tx-table td {
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.tx-date { color: var(--text-secondary); font-size: 0.82rem; white-space: nowrap; }
+
+.tx-desc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+.tx-cat-icon { font-size: 1rem; }
+
+.category-tag {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.type-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.type-badge.income { background: rgba(34,197,94,0.1); color: var(--accent-income); }
+.type-badge.expense { background: rgba(244,63,94,0.1); color: var(--accent-expense); }
+
+.tx-amt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.tx-amt.income { color: var(--accent-income); }
+.tx-amt.expense { color: var(--accent-expense); }
+
+.action-cell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+  color: var(--text-secondary);
+}
+.icon-btn.edit:hover { border-color: var(--accent); color: var(--accent); background: rgba(108,99,255,0.08); }
+.icon-btn.delete:hover { border-color: var(--accent-expense); color: var(--accent-expense); background: rgba(244,63,94,0.08); }
+
+.empty-state.large {
+  padding: 64px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.empty-state .empty-icon { font-size: 2.5rem; opacity: 0.3; display: block; margin-bottom: 8px; }
+
+@media (max-width: 768px) {
+  .tx-filters { flex-direction: column; }
+  .filter-input { min-width: unset; }
+}

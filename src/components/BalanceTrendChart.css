@@ -1,0 +1,47 @@
+.trend-chart { display: flex; flex-direction: column; gap: 12px; }
+
+.chart-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  align-items: center;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 4px;
+}
+.legend-dot.income { background: var(--accent-income); }
+.legend-dot.expense { background: var(--accent-expense); }
+
+.chart-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.bar-svg { display: block; overflow: visible; }
+
+.bar {
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.bar:hover { opacity: 0.8; }
+.income-bar { fill: var(--accent-income); }
+.expense-bar { fill: var(--accent-expense); }
+
+.bar-label {
+  fill: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+.balance-label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+}
+.balance-label.pos { fill: var(--accent-income); }
+.balance-label.neg { fill: var(--accent-expense); }
