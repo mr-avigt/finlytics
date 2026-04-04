@@ -30,9 +30,13 @@
 .insight-card:nth-child(3) { animation-delay: 0.10s; }
 .insight-card:nth-child(4) { animation-delay: 0.15s; }
 .insight-card:hover { transform: translateY(-2px); }
-.insight-card.highlight { border-left: 3px solid var(--accent); }
-.insight-card.positive  { border-left: 3px solid var(--accent-income); }
-.insight-card.warning   { border-left: 3px solid var(--accent-savings); }
+.insight-card.highlight { border-left: 3px solid var(--accent);         box-shadow: 0 0 18px rgba(108, 99, 255, 0.15); }
+.insight-card.positive  { border-left: 3px solid var(--accent-income);  box-shadow: 0 0 18px rgba(34, 197, 94, 0.15); }
+.insight-card.warning   { border-left: 3px solid var(--accent-savings); box-shadow: 0 0 18px rgba(245, 158, 11, 0.15); }
+
+.insight-card.highlight:hover { box-shadow: 0 0 28px rgba(108, 99, 255, 0.35); }
+.insight-card.positive:hover  { box-shadow: 0 0 28px rgba(34, 197, 94, 0.35); }
+.insight-card.warning:hover   { box-shadow: 0 0 28px rgba(245, 158, 11, 0.35); }
 
 .insight-icon { font-size: 1.3rem; flex-shrink: 0; }
 
