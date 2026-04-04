@@ -59,7 +59,7 @@
 
 .breakdown-cat {
   color: var(--text);
-  truncate: ellipsis;
+  /* truncate: ellipsis; */
   overflow: hidden;
   white-space: nowrap;
 }
