@@ -1,6 +1,16 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import "./Insights.css";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { GiExpense } from "react-icons/gi";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import { GiReceiveMoney } from "react-icons/gi";
+import { GiPayMoney } from "react-icons/gi";
+
+
+
+
+
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -57,7 +67,7 @@ export default function Insights() {
       {/* Key Insight Cards */}
       <div className="insight-cards">
         <div className="insight-card highlight">
-          <div className="insight-icon">🏆</div>
+          <div className="insight-icon"><FaMoneyBillTrendUp /></div>
           <div className="insight-content">
             <span className="insight-label">Highest Spending Category</span>
             <span className="insight-value">{insights.topCategory?.[0] || "—"}</span>
@@ -66,7 +76,7 @@ export default function Insights() {
         </div>
 
         <div className="insight-card">
-          <div className="insight-icon">📊</div>
+          <div className="insight-icon"><GiExpense /></div>
           <div className="insight-content">
             <span className="insight-label">Avg Monthly Expense</span>
             <span className="insight-value">{fmt(Math.round(insights.avgExpense))}</span>
@@ -75,7 +85,7 @@ export default function Insights() {
         </div>
 
         <div className="insight-card">
-          <div className="insight-icon">💸</div>
+          <div className="insight-icon"><FaMoneyBillTransfer /></div>
           <div className="insight-content">
             <span className="insight-label">Biggest Single Expense</span>
             <span className="insight-value">{insights.maxExpense ? fmt(insights.maxExpense.amount) : "—"}</span>
@@ -84,7 +94,7 @@ export default function Insights() {
         </div>
 
         <div className={`insight-card ${insights.savingsRate >= 20 ? "positive" : "warning"}`}>
-          <div className="insight-icon">{insights.savingsRate >= 20 ? "✅" : "⚠️"}</div>
+          <div className="insight-icon">{insights.savingsRate >= 20 ? <GiReceiveMoney /> : <GiPayMoney />}</div>
           <div className="insight-content">
             <span className="insight-label">Savings Rate</span>
             <span className="insight-value">{insights.savingsRate.toFixed(1)}%</span>

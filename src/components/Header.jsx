@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setRole } from "../store/uiSlice";
 import { toggleDarkMode } from "../store/uiSlice";
 import "./Header.css";
+import { MdDarkMode } from "react-icons/md";
+import { FaRegLightbulb } from "react-icons/fa";
+
 
 const PAGE_TITLES = { dashboard: "Dashboard", transactions: "Transactions", insights: "Insights" };
 
@@ -27,8 +30,8 @@ export default function Header({ setSidebarOpen, sidebarOpen, activePage }) {
             onChange={(e) => dispatch(setRole(e.target.value))}
             className="role-select"
           >
-            <option value="viewer">👁 Viewer</option>
-            <option value="admin">⚡ Admin</option>
+            <option value="viewer">Viewer</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
 
@@ -38,7 +41,7 @@ export default function Header({ setSidebarOpen, sidebarOpen, activePage }) {
           aria-label="Toggle dark mode"
           title={darkMode ? "Light mode" : "Dark mode"}
         >
-          {darkMode ? "☀" : "◑"}
+          {darkMode ? <MdDarkMode /> : <FaRegLightbulb />}
         </button>
 
         <div className="user-avatar">

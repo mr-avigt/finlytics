@@ -4,11 +4,23 @@ import { deleteTransaction } from "../store/transactionsSlice";
 import { setFilter, clearFilters } from "../store/filtersSlice";
 import TransactionModal from "../components/TransactionModal";
 import "./Transactions.css";
+import { FaCartShopping } from "react-icons/fa6";
+import { MdOutlineFastfood } from "react-icons/md";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { RiMovie2Line } from "react-icons/ri";
+import { RiApps2Line } from "react-icons/ri";
+import { FaUserDoctor } from "react-icons/fa6";
+import { FaMotorcycle } from "react-icons/fa6";
+import { TbMountainFilled } from "react-icons/tb";
+import { IoBookSharp } from "react-icons/io5";
+
+
+
 
 const CATEGORY_ICONS = {
-  "Food & Dining": "🍽", "Income": "💰", "Entertainment": "🎬",
-  "Utilities": "⚡", "Health": "🏥", "Shopping": "🛍",
-  "Transport": "🚗", "Travel": "✈", "Education": "📚",
+  "Food & Dining": <MdOutlineFastfood />, "Income": <GiTakeMyMoney />, "Entertainment": <RiMovie2Line />,
+  "Utilities": <RiApps2Line />, "Health": <FaUserDoctor />, "Shopping": <FaCartShopping />,
+  "Transport": <FaMotorcycle />, "Travel": <TbMountainFilled />, "Education": <IoBookSharp />
 };
 
 export default function Transactions() {
