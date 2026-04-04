@@ -14,7 +14,7 @@ export default function Sidebar({ activePage, setActivePage, sidebarOpen }) {
     <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
       <div className="sidebar-logo">
         <span className="logo-mark">◈</span>
-        {sidebarOpen && <span className="logo-text">Finlens</span>}
+        {sidebarOpen && <span className="logo-text">Finlytics</span>}
       </div>
 
       <nav className="sidebar-nav">
