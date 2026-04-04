@@ -16,9 +16,11 @@ export default function App() {
       <div className="main-area">
         <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} activePage={activePage} />
         <main className="page-content">
-          {activePage === "dashboard" && <Dashboard setActivePage={setActivePage} />}
-          {activePage === "transactions" && <Transactions />}
-          {activePage === "insights" && <Insights />}
+          <div key={activePage} className="page-wrapper">
+            {activePage === "dashboard" && <Dashboard setActivePage={setActivePage} />}
+            {activePage === "transactions" && <Transactions />}
+            {activePage === "insights" && <Insights />}
+          </div>
         </main>
       </div>
     </div>

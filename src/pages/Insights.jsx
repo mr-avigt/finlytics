@@ -53,7 +53,7 @@ export default function Insights() {
   const maxCatAmt = insights.catArr[0]?.[1] || 1;
 
   return (
-    <div className="insights-page">
+    <div className="insights-page page">
       {/* Key Insight Cards */}
       <div className="insight-cards">
         <div className="insight-card highlight">
@@ -122,7 +122,9 @@ export default function Insights() {
 
       {/* Category Breakdown Bars */}
       <div className="section-card">
-        <h3 className="section-title">Spending by Category</h3>
+        <h3 className="section-title gradient-text">
+          Spending by Category
+        </h3>
         {insights.catArr.length === 0 ? (
           <div className="empty-state"><span>◎</span><p>No expense data</p></div>
         ) : (

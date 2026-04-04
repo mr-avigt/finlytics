@@ -122,3 +122,37 @@
 }
 .role-dot.admin { background: var(--accent); }
 .role-dot.viewer { background: var(--accent-income); }
+
+.sidebar {
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s ease;
+}
+
+/* Add entry animation */
+.sidebar {
+  animation: slideInLeft 0.4s ease;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Nav item hover micro interaction */
+.nav-item:hover {
+  transform: translateX(4px);
+}
+
+.nav-indicator {
+  transition: height 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item.active .nav-indicator {
+  height: 24px;
+}

@@ -45,3 +45,26 @@
 }
 .balance-label.pos { fill: var(--accent-income); }
 .balance-label.neg { fill: var(--accent-expense); }
+
+.bar {
+  transform-origin: bottom;
+  animation: growBar 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes growBar {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Stagger bars */
+.bar-group:nth-child(1) .bar { animation-delay: 0.1s; }
+.bar-group:nth-child(2) .bar { animation-delay: 0.15s; }
+.bar-group:nth-child(3) .bar { animation-delay: 0.2s; }
+.bar-group:nth-child(4) .bar { animation-delay: 0.25s; }

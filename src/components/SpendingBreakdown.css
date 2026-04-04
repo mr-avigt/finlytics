@@ -1,10 +1,16 @@
 .spending-breakdown {
   display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  /* margin-right: 10px; */
+  gap: 18px;
+  /* align-items: flex-start; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.donut-wrap { flex-shrink: 0; }
+.donut-wrap { 
+  flex-shrink: 0; 
+}
 
 .donut-arc {
   cursor: pointer;
@@ -39,6 +45,7 @@
   display: grid;
   grid-template-columns: 10px 1fr auto auto;
   gap: 8px;
+  /* justify-content: center; */
   align-items: center;
   font-size: 0.82rem;
 }

@@ -9,9 +9,12 @@ export default function SummaryCard({ label, value, sub, accent, icon, trend }) 
           {trend === "up" ? "▲" : trend === "down" ? "▼" : "—"}
         </span>
       </div>
+
       <div className="card-value">{value}</div>
+
       <div className="card-label">{label}</div>
       <div className="card-sub">{sub}</div>
+
       <div className="card-glow" />
     </div>
   );

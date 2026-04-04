@@ -2,10 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
   animation: fadeUp 0.3s ease;
 }
 
 .summary-cards {
+  /* padding-left: 10px; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
@@ -20,7 +23,7 @@
 .chart-card.wide { grid-column: auto; }
 
 .recent-section {
-  background: var(--bg-card);
+  background-color: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
   padding: 20px;
@@ -47,4 +50,41 @@
 }
 @media (max-width: 600px) {
   .summary-cards { grid-template-columns: 1fr 1fr; }
+}
+
+
+.summary-cards > * {
+  animation: fadeUp 0.4s ease backwards;
+}
+
+.summary-cards > *:nth-child(1) { animation-delay: 0.05s; }
+.summary-cards > *:nth-child(2) { animation-delay: 0.1s; }
+.summary-cards > *:nth-child(3) { animation-delay: 0.15s; }
+.summary-cards > *:nth-child(4) { animation-delay: 0.2s; }
+
+/* Charts animation */
+.chart-card {
+  animation: fadeUp 0.5s ease backwards;
+}
+
+.chart-card:nth-child(1) { animation-delay: 0.2s; }
+.chart-card:nth-child(2) { animation-delay: 0.3s; }
+
+/* Recent section */
+.recent-section {
+  animation: fadeUp 0.5s ease backwards;
+  animation-delay: 0.35s;
+}
+
+.chart-card,
+.recent-section {
+  backdrop-filter: blur(10px);
+  /* background: rgba(30, 41, 59, 0.7); */
+}
+
+/* Add depth */
+.chart-card:hover,
+.recent-section:hover {
+  transform: translateY(-3px) scale(1.01);
+  transition: all 0.25s ease;
 }

@@ -196,3 +196,13 @@
   .tx-filters { flex-direction: column; }
   .filter-input { min-width: unset; }
 }
+
+.tx-row {
+  animation: fadeUp 0.25s ease backwards;
+}
+
+.tx-row:nth-child(1) { animation-delay: 0.05s; }
+.tx-row:nth-child(2) { animation-delay: 0.08s; }
+.tx-row:nth-child(3) { animation-delay: 0.11s; }
+.tx-row:nth-child(4) { animation-delay: 0.14s; }
+.tx-row:nth-child(5) { animation-delay: 0.17s; }

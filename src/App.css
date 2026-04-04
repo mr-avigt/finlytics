@@ -74,12 +74,13 @@ body {
 .page-content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px;
+  padding: 30px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  margin: 10px 10px;
 }
 
-.page-content::-webkit-scrollbar { width: 6px; }
+.page-content::-webkit-scrollbar { width: 2px; }
 .page-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 /* Sidebar width transitions */
@@ -185,4 +186,34 @@ body {
 @media (max-width: 768px) {
   .page-content { padding: 16px; }
   .app-shell.sidebar-open .sidebar { position: fixed; z-index: 100; height: 100vh; }
+}
+
+
+.page-wrapper {
+  animation: pageEnter 0.35s ease;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.page-wrapper {
+  animation: pageEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-content {
+  position: relative;
+}
+
+.page-wrapper {
+  position: relative;
 }

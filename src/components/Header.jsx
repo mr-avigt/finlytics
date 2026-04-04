@@ -16,7 +16,7 @@ export default function Header({ setSidebarOpen, sidebarOpen, activePage }) {
         <button className="menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle sidebar">
           <span /><span /><span />
         </button>
-        <h1 className="page-title">{PAGE_TITLES[activePage]}</h1>
+        <h1 className="page-title gradient-text">{PAGE_TITLES[activePage]}</h1>
       </div>
 
       <div className="header-right">

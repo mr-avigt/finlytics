@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  background: transparent;
 }
 
 .recent-item {
@@ -58,3 +59,19 @@
 }
 .tx-amount.income { color: var(--accent-income); }
 .tx-amount.expense { color: var(--accent-expense); }
+
+
+.recent-item {
+  animation: fadeUp 0.3s ease backwards;
+}
+
+.recent-item:nth-child(1) { animation-delay: 0.05s; }
+.recent-item:nth-child(2) { animation-delay: 0.1s; }
+.recent-item:nth-child(3) { animation-delay: 0.15s; }
+.recent-item:nth-child(4) { animation-delay: 0.2s; }
+.recent-item:nth-child(5) { animation-delay: 0.25s; }
+
+/* Hover upgrade */
+.recent-item:hover {
+  transform: translateX(4px);
+}

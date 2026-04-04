@@ -107,3 +107,18 @@
   padding: 16px 24px 20px;
   border-top: 1px solid var(--border);
 }
+
+.modal-card {
+  animation: modalPop 0.25s ease;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

@@ -67,7 +67,7 @@ export default function Transactions() {
   const sortIcon = (f) => sort.field === f ? (sort.dir === "asc" ? " ↑" : " ↓") : " ↕";
 
   return (
-    <div className="transactions-page">
+    <div className="transactions-page page">
       <div className="tx-toolbar">
         <div className="tx-filters">
           <input

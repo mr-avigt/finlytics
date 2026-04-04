@@ -20,7 +20,7 @@ export default function Dashboard({ setActivePage }) {
   const fmt = (n) => "₹" + n.toLocaleString("en-IN");
 
   return (
-    <div className="dashboard">
+    <div className="dashboard page">
       <div className="summary-cards">
         <SummaryCard
           label="Total Balance"
@@ -59,14 +59,14 @@ export default function Dashboard({ setActivePage }) {
       <div className="charts-row">
         <div className="chart-card wide">
           <div className="chart-card-header">
-            <h3>Balance Trend</h3>
+            <h3 className="gradient-text">Balance Trend</h3>
             <span className="chart-subtitle">Monthly overview</span>
           </div>
           <BalanceTrendChart transactions={transactions} />
         </div>
         <div className="chart-card">
           <div className="chart-card-header">
-            <h3>Spending Breakdown</h3>
+            <h3 className="gradient-text">Spending Breakdown</h3>
             <span className="chart-subtitle">By category</span>
           </div>
           <SpendingBreakdown transactions={transactions} />

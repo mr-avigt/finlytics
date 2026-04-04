@@ -2,6 +2,7 @@
   background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  margin-top: 15px;
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -10,7 +11,7 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .summary-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(1px);
   box-shadow: var(--shadow);
 }
 .summary-card:nth-child(1) { animation-delay: 0.0s; }
@@ -82,3 +83,48 @@
 .accent-income { border-left: 3px solid var(--accent-income); }
 .accent-expense { border-left: 3px solid var(--accent-expense); }
 .accent-savings { border-left: 3px solid var(--accent-savings); }
+
+
+.summary-card {
+  backdrop-filter: blur(8px);
+}
+
+/* subtle shine effect */
+.summary-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.05),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.summary-card:hover::before {
+  opacity: 1;
+}
+
+.summary-card {
+  will-change: transform;
+}
+.summary-card {
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card:hover {
+  z-index: 10;
+  transform: translateY(-2px);
+}
+.summary-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px); /* slightly more but smooth */
+  box-shadow: var(--shadow);
+}
