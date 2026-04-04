@@ -1,71 +1,221 @@
-# Finlens — Finance Dashboard UI
+# 📊 Finlytics — Personal Finance Dashboard
 
-A clean, production-grade personal finance dashboard built with React and CSS.
+Finlytics is a personal finance dashboard I built using **React 18**, **Redux Toolkit**, and **plain CSS**. The goal was to create something that not only looks clean but actually feels smooth and intuitive to use — whether it's tracking expenses, analysing spending patterns, or just getting a quick financial overview.
 
-## Features
+It works across desktop, tablet, and mobile, and everything is designed from scratch (including charts — no libraries).
 
-- **Dashboard Overview** — Summary cards (Balance, Income, Expenses, Savings Rate), bar chart (monthly balance trend), donut chart (spending breakdown by category)
-- **Transactions** — Full list with search, filter by type/category/month, sort by date/amount/category, CSV export
-- **Insights** — Top spending category, month-over-month comparison, category breakdown bars, monthly summary table
-- **Role-Based UI** — Viewer (read-only) vs Admin (add, edit, delete transactions) — switchable via dropdown
-- **Dark Mode** — Full dark theme toggle
-- **Data Persistence** — localStorage saves transactions, role, and theme preference
-- **Responsive** — Mobile-friendly layout with collapsible sidebar
+---
 
-## Getting Started
+## 🚀 Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173
+Open: http://localhost:5173
 
-## Tech Stack
+* **Default theme:** Dark mode (you can toggle it from the header)
+* **Default role:** Viewer (switch to Admin to enable editing features)
 
-- React 18 (hooks, context API)
-- Plain CSS with CSS variables (design tokens)
-- Vite
-- Custom SVG charts (no chart library dependency)
+---
 
-## Repository Name Ideas
+## ✨ What this project does
 
-### Clean & Professional
-- `finlens` — the app name, short and memorable
-- `finance-dashboard-ui`
-- `personal-finance-tracker`
-- `cashflow-dashboard`
+### 📊 Dashboard Overview
 
-### Descriptive
-- `react-finance-dashboard`
-- `finance-tracker-react`
-- `spending-insights-ui`
+This is the main screen — designed to give a quick snapshot of finances.
 
-### Creative
-- `moneylens`
-- `ledger-ui`
-- `pocketview`
-- `rupee-radar`
-- `flowboard-finance`
+* **Summary Cards**
+  Shows total balance, income, expenses, and savings rate.
+  I implemented a custom `useCountUp` hook that animates numbers when they come into view using `IntersectionObserver` + `requestAnimationFrame`. The animation uses an ease-out curve so it feels natural instead of robotic.
 
-## Project Structure
+* **Balance Trend Chart**
+  Built using pure SVG (no chart libraries).
+  Transactions are grouped monthly and displayed as income vs expense bars. Heights are calculated dynamically, and the balance is colour-coded (green/red).
 
-```
+* **Spending Breakdown (Donut Chart)**
+  Also built manually using SVG + trigonometry (`Math.cos`, `Math.sin`).
+  Categories are grouped and displayed as segments with percentages and totals.
+
+* **Recent Transactions**
+  Shows the latest 5 transactions with category icons, dates, and colour-coded amounts.
+
+---
+
+### 💳 Transactions Page
+
+This is basically a full transaction manager.
+
+* **Filtering**
+  You can filter by:
+
+  * Search (description + category)
+  * Type (income/expense)
+  * Category
+  * Month
+
+  All filters are combined and handled using Redux + `useMemo`.
+
+* **Sorting**
+  Click on table headers (Date, Category, Amount) to sort.
+  Clicking again toggles ascending/descending.
+
+* **CSV Export**
+  Generates and downloads a CSV file of the current filtered data — no external library used.
+
+* **Responsive UI**
+
+  * Desktop → Table view
+  * Mobile → Card layout
+    Both are rendered together; CSS decides which one to show.
+
+---
+
+### 📈 Insights Page
+
+This section focuses on extracting patterns from the data.
+
+* **Highlight Cards**
+
+  * Highest spending category
+  * Average monthly expense
+  * Largest expense
+  * Savings rate (with indicator)
+
+* **Month-over-Month Comparison**
+  Compares the latest two months dynamically and shows % change with visual indicators.
+
+* **Category Breakdown Bars**
+  Horizontal bars showing spending per category (animated using CSS).
+
+* **Monthly Summary Table**
+  Scrollable table with income, expenses, balance, and savings rate.
+
+---
+
+### 🔐 Role-Based UI
+
+There are two roles:
+
+| Role   | Access                |
+| ------ | --------------------- |
+| Viewer | Read-only             |
+| Admin  | Can add, edit, delete |
+
+* Role is stored in Redux
+* Persisted in `localStorage`
+* UI updates instantly based on role
+* Admin-only features (like modals) are conditionally rendered
+
+---
+
+### 🧠 State Management (Redux Toolkit)
+
+I used Redux Toolkit to keep things structured:
+
+* **transactionsSlice** → Handles all transaction CRUD operations
+* **uiSlice** → Manages role + dark mode
+* **filtersSlice** → Stores all filter states
+
+There’s also a **custom middleware** that automatically syncs state with `localStorage`.
+
+---
+
+### 🌙 Dark Mode
+
+Implemented using **CSS variables**.
+
+* Theme switching = just changing `data-theme` on `<html>`
+* No inline styles or messy toggling
+* Entire UI updates instantly
+
+---
+
+### 📱 Responsive Design
+
+The app adapts across screen sizes:
+
+* **Desktop** → Full layout with sidebar
+* **Tablet** → Compact layout
+* **Mobile** → Sidebar becomes overlay + transactions switch to cards
+
+Sidebar behavior is different on mobile (slides in/out with overlay and auto-closes on navigation).
+
+---
+
+### 🔔 Reload Toast
+
+Every time the app loads, a small toast appears:
+
+* Shows a countdown (3 → 1)
+* Has a circular SVG timer animation
+* Confirms that data has been restored
+
+---
+
+### 💾 Data Persistence
+
+Everything is stored in `localStorage`:
+
+* Transactions
+* Role
+* Theme
+
+So refresh doesn’t reset anything.
+
+---
+
+## 🗂️ Project Structure
+
+```bash
 src/
-├── context/
-│   └── FinanceContext.jsx    # Global state (transactions, role, theme, filters)
-├── components/
-│   ├── Sidebar.jsx / .css
-│   ├── Header.jsx / .css
-│   ├── SummaryCard.jsx / .css
-│   ├── BalanceTrendChart.jsx / .css
-│   ├── SpendingBreakdown.jsx / .css
-│   ├── RecentTransactions.jsx / .css
-│   └── TransactionModal.jsx / .css
-├── pages/
-│   ├── Dashboard.jsx / .css
-│   ├── Transactions.jsx / .css
-│   └── Insights.jsx / .css
-├── App.jsx / App.css
-└── main.jsx
+├── store/        # Redux slices + middleware
+├── hooks/        # Custom hooks for animating the text using js
+├── components/   # UI components
+├── pages/        # Dashboard, Transactions, Insights pages
+├── styles/       # Global css styling
+├── App.jsx       # Layout + routing
+└── main.jsx      # Entry point
 ```
+
+---
+
+## 🛠️ Tech Stack
+
+* React 18
+* Redux Toolkit
+* Vite
+* Plain CSS (no framework)
+* Custom SVG charts
+* localStorage
+
+---
+
+## 📦 Scripts
+
+```bash
+npm run dev
+npm run build
+npm run preview
+```
+
+---
+
+## 💡 Why I built this
+
+This project helped me go deeper into:
+
+* SVG + animations
+* Performance optimizations
+* Responsive UI patterns
+* Clean architecture with Redux
+
+---
+
+## 👨‍💻 Author
+
+Abhijeet Anand
+B.Tech CSE | Frontend Developer
+
+---

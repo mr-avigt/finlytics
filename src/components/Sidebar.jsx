@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
 import "./Sidebar.css";
+import { RiMoneyEuroCircleLine } from "react-icons/ri";
+import { AiFillMoneyCollect } from "react-icons/ai";
+
+
 
 const NAV = [
   { id: "dashboard", label: "Dashboard", icon: "⬡" },
@@ -13,7 +17,9 @@ export default function Sidebar({ activePage, setActivePage, sidebarOpen }) {
   return (
     <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
       <div className="sidebar-logo">
-        <span className="logo-mark">◈</span>
+        {/* <span className="logo-mark">◈</span> */}
+        {/* <span className="logo-mark"><RiMoneyEuroCircleLine /></span> */}
+        <span className="logo-mark"><AiFillMoneyCollect /></span>
         {sidebarOpen && <span className="logo-text">Finlytics.</span>}
       </div>
 
