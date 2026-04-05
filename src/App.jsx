@@ -27,7 +27,7 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // When navigating on mobile, close sidebar
+  // When on mobile, close sidebar
   const handlePageChange = (page) => {
     setActivePage(page);
     if (isMobile()) setSidebarOpen(false);
