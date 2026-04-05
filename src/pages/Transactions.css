@@ -272,10 +272,8 @@
 
 .tx-card-actions { display: flex; gap: 4px; }
 
-/* ─── Desktop: hide card list ─────────────────────────────── */
 .tx-card-list { display: none; }
 
-/* ─── Mobile (≤767px) ─────────────────────────────────────── */
 @media (max-width: 767px) {
   .tx-toolbar    { flex-direction: column; align-items: stretch; }
   .tx-filters    { flex-direction: column; }
