@@ -183,8 +183,8 @@
   transition: all 0.15s;
   color: var(--text-secondary);
 }
-.icon-btn.edit:hover   { border-color: var(--accent);        color: var(--accent);        background: rgba(108,99,255,0.08); }
-.icon-btn.delete:hover { border-color: var(--accent-expense); color: var(--accent-expense); background: rgba(244,63,94,0.08); }
+.icon-btn.edit:hover   { border-color: var(--accent);         color: var(--accent);         background: rgba(108,99,255,0.08); }
+.icon-btn.delete:hover { border-color: var(--accent-expense);  color: var(--accent-expense);  background: rgba(244,63,94,0.08); }
 
 /* ─── Empty State ─────────────────────────────────────────── */
 .empty-state.large {
@@ -192,25 +192,15 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  color: var(--text-secondary);
 }
 .empty-state .empty-icon { font-size: 2.5rem; opacity: 0.3; display: block; margin-bottom: 8px; }
-
-/* ─── Mobile Card List ────────────────────────────────────── */
-/* On mobile the table becomes cards */
-@media (max-width: 767px) {
-  .tx-toolbar   { flex-direction: column; align-items: stretch; }
-  .tx-filters   { flex-direction: column; }
-  .filter-input { min-width: unset; width: 100%; }
-  .filter-select { width: 100%; }
-  .tx-actions   { justify-content: flex-end; }
-
-  /* Hide table; show card list instead */
-  .tx-table-wrap { display: none; }
-  .tx-card-list  { display: flex; flex-direction: column; gap: 8px; }
-}
-
-/* ─── Desktop: hide card list ─────────────────────────────── */
-.tx-card-list { display: none; }
 
 /* ─── TX Card (mobile) ────────────────────────────────────── */
 .tx-card {
@@ -281,13 +271,18 @@
 .tx-card-amount.expense { color: var(--accent-expense); }
 
 .tx-card-actions { display: flex; gap: 4px; }
-/* BASE — hide card list on desktop */
-.tx-card-list {
-  display: none;
-}
 
-/* MOBILE — show card list, hide table */
+/* ─── Desktop: hide card list ─────────────────────────────── */
+.tx-card-list { display: none; }
+
+/* ─── Mobile (≤767px) ─────────────────────────────────────── */
 @media (max-width: 767px) {
+  .tx-toolbar    { flex-direction: column; align-items: stretch; }
+  .tx-filters    { flex-direction: column; }
+  .filter-input  { min-width: unset; width: 100%; }
+  .filter-select { width: 100%; }
+  .tx-actions    { justify-content: flex-end; }
   .tx-table-wrap { display: none; }
   .tx-card-list  { display: flex; flex-direction: column; gap: 8px; }
+  .empty-state.large { display: flex; }
 }
