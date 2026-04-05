@@ -281,3 +281,13 @@
 .tx-card-amount.expense { color: var(--accent-expense); }
 
 .tx-card-actions { display: flex; gap: 4px; }
+/* BASE — hide card list on desktop */
+.tx-card-list {
+  display: none;
+}
+
+/* MOBILE — show card list, hide table */
+@media (max-width: 767px) {
+  .tx-table-wrap { display: none; }
+  .tx-card-list  { display: flex; flex-direction: column; gap: 8px; }
+}
